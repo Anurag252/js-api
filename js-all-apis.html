@@ -1,0 +1,2317 @@
+<html>
+    <body>
+<h1>JS Types</h1>
+<ul>
+    <li>String</li>
+    <li>Number</li>
+    <li>Symbol <sub> new  to (ES 6)</sub></li>
+    <li>Undefined</li>
+    <li>Null</li>
+    <li>Object</li>
+    <li>Boolean</li>
+</ul>
+<p>typeof null is object. To determine null , use<code> variable === null</code></p>
+<div class="codeblock"> 
+    <code class="1c">typeof null</code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+
+<p>unassigned variable is Undefined</p>
+<div class="codeblock"> 
+    <code class="1c">var a ; typeof a</code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+<br/>
+<p>if spaces in between properties or <b>it a property is from a variable</b>, then use [] 
+</p>
+<div class="codeblock"> 
+    <code class="1c">var obj = {"b c" : "test"};obj["b c"]</code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+
+<br/>
+<p>array and functions are objects but type of function is function<sup>Nuance</sup></p>
+<div class="codeblock"> 
+    <code class="1c">var fun = function(){}; typeof fun</code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+<br/>
+<p>
+    List of falsy values<sup>Nuance</sup></p>
+    <ul>
+        <li>"" <sub>empty string</sub></li>
+        <li>0</li>
+        <li>-0</li>
+        <li>NaN</li>
+        <li>Null</li>
+        <li>undefined</li>
+        <li>false</li>
+    </ul>
+
+    <p>When toString is called over array , it prints a csv of elements</p>
+
+   <p> if one of the operand is number and other is NaN , then comparision is always false</p>
+   <div class="codeblock"> 
+        <code class="1c">(42 > "foo") === (42  &lt; "foo")</code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    </div>
+    
+    <p>Anonymous function <code>var foo = function(){
+
+    }
+    </code></p>
+    <p>Named function <code>var foo = function test(){
+
+    }
+    </code></p>
+
+    <p>IIFE function <code> (function IIFE(){
+
+    })()
+    </code></p>
+
+    <h4>Closure</h4>
+    <div class="codeblock"> 
+        <code class="1c">function makeaddr(x){
+            function add(y){
+                return y + x;
+            };
+            return add;
+        }
+        var plusone = makeaddr(1);
+        var plusTen = makeaddr(10);
+        plusone(3);
+        plusTen(4);
+    </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    </div>
+
+    <h4>Cheating scope</h4>
+    <p>
+        <ol>
+            <li>eval </li>
+            <li>new function("")<p>takes in string code and creates new scope</p></li>
+            <li>With modifies object and creates a new scope
+                <div class="codeblock"> 
+                    <code class="1c">
+                        function foo(obj)
+                        {
+                            with (obj)
+                            {
+                                a = 2;
+                            }
+                        }
+                        var o1 = { a : 3};
+                        var o2 = { b : 3};
+                        foo(o1)
+                        o1.a = 5;
+
+                        foo(o2);
+                        a
+
+                     </code>
+                    <br/>
+                    <code class="1a"></code>
+                    <br/>
+                    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+                </div>
+            </li>
+        </ol>
+    </p>
+
+<hr/>
+<h1>Arrays</h1>
+<div class="codeblock"> 
+    <code class="1c">
+       var arr = [] ;
+       arr.push("1");
+       arr.push({"a": "test"});
+       arr;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<div class="codeblock"> 
+    <code class="1c">
+        var arr = [] ;
+        arr.push("1");
+        arr.push({"a": "test"});
+        arr.push(3);
+        arr.splice(2,1,"duck" , "animal")
+        arr;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<div class="codeblock"> 
+    <code class="1c">
+        var arr = [] ;
+        arr.push("1");
+        arr.push({"a": "test"});
+        arr.push(3);
+        arr.splice(2,1) //from 2 to next 4 elements
+        arr;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<div class="codeblock"> 
+    <code class="1c">
+      var str = "boston";
+      str.slice(2,5);
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<div class="codeblock"> 
+    <code class="1c">
+        var arr = [] ;
+        arr.push(1);
+        arr.push(13);
+        arr.push(5);
+        arr.push(7);
+        
+        arr.sort((a,b) =>  a-b);
+        arr;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+<p> usage of new operator. Consider a function Plan() , and when we assign anything via prototype 
+    
+, all Plan objects have same data </p>
+<div class="codeblock"> 
+    <code class="1c">
+    function Plan()
+    {
+      var t = {  Name : "John",
+        calc : function()
+        {
+            
+        }
+    }
+    }
+    var plan1 = new Plan();
+    var plan2 = new Plan();
+    //All plans have this new copy
+   
+    Plan.prototype.test = "Jack";
+    //all plans have this shared
+    plan1.test;
+
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+<p>To know if a property is from inheritance or by self</p>
+<div class="codeblock"> 
+    <code class="1c">
+        function Plan()
+    {
+      var t = {  Name : "John",
+        calc : function()
+        {
+            
+        }
+    }
+    }
+    var plan1 = new Plan();
+    var plan2 = new Plan();
+    //All plans have this new copy
+   
+    Plan.prototype.test = "Jack";
+    //all plans have this shared
+    plan1.hasOwnProperty("test");
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<hr/>
+<h2>Browser APIs</h2>
+<ul>
+    <li>window.location.href<sub>location url</sub></li>
+    <li>window.location.hostname<sub>domain name </sub></li>
+    <li>window.location.pathname<sub>query params after .com</sub></li>
+    <li>window.location.hash<sub>id referencing any id element , www.abc.com#123</sub></li>
+    <li>window.location.assign<sub>keep history intact</sub></li>
+    <li>window.location.replace<sub>does not record in history</sub></li>
+    <li>window.location.reload(true)<sub>reloads from server </sub></li>
+    <li>window.location.reload()<sub>reloads from cache</sub></li>
+    <li>window.history.back()</li>
+    <li>window.history.forward()</li>
+    <li>window.history.go(2)</li>
+</ul>
+<hr/>
+<h2>Jquery API</h2>
+<ul>
+    <li></li>
+</ul>
+<hr/>
+<h4>Type conversion</h4>
+<ul>
+    <li><code>string(value)<sup>converts to string</sup></code></li>
+    <li><code>Number("123")<sup>converts to Number</sup></code></li>
+    <li><code>Number(null)<sup>0</sup></code></li>
+    <li><code>Number(undefined)<sup>NaN</sup></code></li>
+    <li><code>Number(123z)<sup>NaN</sup></code></li>
+    <li><code>Number(" 123 ")<sup>123</sup></code></li> 
+</ul>
+
+<p>** exponential operator , highest precedence</p>
+<br/>
+<p>delete object property using delete </p>
+<div class="codeblock"> 
+    <code class="1c">
+       var user = {
+        name : "Andy",
+        age : 24,
+        dob : "help"
+       }
+       delete user.age;
+       user.age === undefined;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Object property key can hhave only symbol and string properties</p>
+<hr/>
+<h2>Symbol</h2>
+<p>Symbols are uniquely generated</p>
+<div class="codeblock"> 
+    <code class="1c">
+      let id1 = Symbol();
+      let id2 = Symbol();
+      id1 == id2
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<p>Symbols dont auto-convert</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let id1 = Symbol();
+        let id2 = Symbol();
+        //alert(id1); // error
+        id1.toString()
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Since symbols are unique , we can assign properties using them and 
+    no overwriting happens </p>
+<div class="codeblock"> 
+    <code class="1c">
+      let id1 = Symbol();
+      let id2 = Symbol();
+      let user = {
+          name : "Abc",
+          age : 40 
+      }
+      user[id1] = "John";
+      user[id2] = "Jason"
+      user[id1] + " " + user[id2]
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>For-in symbols are skipped.Only Object.assign <sub>object method</sub> copies all properties</p>
+<div class="codeblock"> 
+    <code class="1c">
+      let id = Symbol();
+      let user = {
+          Name : "Andy",
+          age : 24,
+        [id] : "Symbol prop"
+      }
+      let allproperties = "";
+      for (var key in user)
+      {
+         allproperties += key + " ";
+      }
+      allproperties;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Object.assign copies both string and symbol properties</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let id = Symbol();
+        let copieduser = {};
+        let user = {
+            Name : "Andy",
+            age : 24,
+          [id] : "Symbol prop"
+        }
+        Object.assign(copieduser,user);
+        copieduser[id];
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+<p>Object.assign copies all elements from source to target and returns target Object.assign(target,source)</p>
+
+<p>Use Symbol.for(key) to get same symbol value and Symbol.KeyFor()</p>
+<p>symbol.for(string) and symbol.forKey(symbol) </p>
+<div class="codeblock"> 
+    <code class="1c">
+       let id = Symbol("abc");
+       let sym = Symbol.for("abc");
+       let id1 =  Symbol.keyFor(sym);
+       id1 === "abc"
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<div class="codeblock"> 
+    <code class="1c">
+       let id = Symbol("abc");
+       let sym = Symbol.for("abc");
+       let id1 =  Symbol.keyFor(sym);
+       id1 === "abc"
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<br/>
+<h3>Object to primitive conversion</h3>
+<p>object to boolean always works as true</p>
+<p>object to string and number follows these rules</p>
+
+<p>There are three possibilities for conversions</p>
+<ol>
+    <li>object to string</li>
+    <li>object to Number</li>
+    <li>object to Default , when its not sure what to expect and hint in that case is 'default'</li>
+</ol>
+<p>The algo for conversion:-</p>
+<p>
+<ol>
+    <li>Call obj[Symbol.toPrimitive](hint) – the method with the symbolic key Symbol.toPrimitive (system symbol), if such method exists,</li>
+<li>Otherwise if hint is "string"</li>
+    <ul>
+        <li>try obj.toString() and obj.valueOf(), whatever exists.</li>
+    </ul>
+<li> Otherwise if hint is "number" or "default"</li>
+   <ul><li>try obj.valueOf() and obj.toString(), whatever exists.</li></li></ul>
+</ol>
+</p>
+<p>Number hint</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let user = {
+            name : "John" , 
+            money : 1000 ,
+            [Symbol.toPrimitive](hint)
+            {
+                if(hint == "string")
+                {
+                    return this.name;
+                }
+                if (hint == "default") 
+                {
+                    return "default"
+                }
+                if(hint == "number")
+                {
+                    return this.money
+                }
+                //must return
+                
+            },
+  
+            toString()
+            {
+                console.log("to string");
+              //return type is ignored
+            },
+  
+            valueOf()
+            {
+                console.log("value of")
+              //return type is ignored
+            }
+        }
+        ++user;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+<p>string hint</p>
+ <div class="codeblock"> 
+        <code class="1c">
+            let user = {
+                name : "John" , 
+                money : 1000 ,
+                [Symbol.toPrimitive](hint)
+                {
+                    if(hint == "string")
+                    {
+                        return this.name;
+                    }
+                    if (hint == "default") 
+                    {
+                        return "default"
+                    }
+                    if(hint == "number")
+                    {
+                        return this.money
+                    }
+                    //must return
+                    
+                },
+      
+                toString()
+                {
+                    console.log("to string");
+                  //return type is ignored
+                },
+      
+                valueOf()
+                {
+                    console.log("value of")
+                  //return type is ignored
+                }
+            }
+            user;
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+<br/>
+
+<br/>
+<p>default hint</p>
+ <div class="codeblock"> 
+        <code class="1c">
+            let user = {
+                name : "John" , 
+                money : 1000 ,
+                [Symbol.toPrimitive](hint)
+                {
+                    if(hint == "string")
+                    {
+                        return this.name;
+                    }
+                    if (hint == "default") 
+                    {
+                        return "default"
+                    }
+                    if(hint == "number")
+                    {
+                        return this.money
+                    }
+                    //must return
+                    
+                },
+      
+                toString()
+                {
+                    console.log("to string");
+                  //return type is ignored
+                },
+      
+                valueOf()
+                {
+                    console.log("value of")
+                  //return type is ignored
+                }
+            }
+            user + "";
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+
+<p>if symbol[primitive] is not present then JS tries to use toString or valueOf</p>
+<p>By default, a plain object has following toString and valueOf methods:</p>
+ <div class="codeblock"> 
+        <code class="1c">
+            let user = {
+                name : "John" , 
+                money : 1000 ,
+               toString()
+                {
+                   return this.name;
+                  //if object is returned , it is ignored
+                },
+      
+                valueOf()
+                {
+                    return this.money;
+                    //if object is returned , it is ignored
+                }
+            }
+            user*2;
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+
+<br/>
+<div class="codeblock"> 
+    <code class="1c">
+        let user = {
+            name : "John" , 
+            money : 1000 ,
+           toString()
+            {
+               return this.name;
+              //if object is returned , it is ignored
+            },
+  
+            valueOf()
+            {
+                return this.money;
+                //if object is returned , it is ignored
+            }
+        }
+        user;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+<p>
+    <ul>
+        <li>toString() and valueOf() can return anything exception objects(non-primitive)</li>
+        <li>By default toString() has [object Object] representtaion</li>
+        <li>first toString is tried and then valueOf is tried. if toString() is not found in the object , its prototype is also searched</li>
+        <li></li>
+    </ul>
+</p>
+<hr/>
+<p>inside a function we can determine using <code>new.target</code> if the function was called using new or directly </p>
+<p>If return is called with an object then the object is returned instead of this</p>
+<p>if return is called with primitive , it is ignored and "this" is returned</p>
+
+<h1>Data types</h1>
+<h2>methods of primitive</h2>
+
+<p>to convert a number to binary , use  </p>
+<div class="codeblock"> 
+    <code class="1c">
+        var num = 34;
+        num.toString(2);
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+<p>Math class in JS</p>
+<ul>
+    <li>Math.floor</li>
+    <li>Math.ceil</li>
+    <li>Math.round</li>
+    <li>Math.trunc</li>
+    <li>num.toFixed()</li>
+    <li>Math.random()</li>
+    <li>Math.max(a,b,c)</li>
+    <li>Math.pow(n,power)</li>
+</ul>
+
+
+<p>isNaN(NaN)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        (isNaN(NaN) == isNaN("-5")) 
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+<br/>
+
+<div class="codeblock"> 
+    <code class="1c">
+        (NaN == NaN)//false , hence use isFinite 
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+
+<p>isFinite("15")</p>
+<div class="codeblock"> 
+    <code class="1c">
+        !(isFinite(Infinity) == isFinite(-Infinity)) == isFinite(NaN)
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+
+<p>Object.is</p>
+<div class="codeblock"> 
+    <code class="1c">
+        Object.is(NaN, NaN) == Object.is(0,-0)  //true === false;        
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+<p> for rest all cases its === match</p>
+
+
+<br/>
+<p>ParseInt</p>
+<p>ParseFloat</p>
+<hr/>
+
+
+<h3>Strings</h3>
+<p><code>str[3] = 'a'</code> // will give error</p>
+
+<h1>Array</h1>
+<p><code>let arr = new Array();</code></p>
+<p><code>let arr = []</code></p>
+<p>Arrays are objects , copied by reference,</p>
+<p>Arr.Length is both read and writeable</p>
+<h4>Arra methods</h4>
+<ul>
+    <li>delete arr[1]</li>
+    <li>arr.splice(sratindex , delete count , [elements to be inserted])</li>
+    <li>arr.concat(arr1,arr2 ...)</li>
+   
+    <div class="codeblock"> 
+        <code class="1c">
+            var arr = [];
+            arr.concat([3,4] , [5,6]);      
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+    </div>
+    <p>if we concat an object , object is concated not its properties</p>
+    
+    <div class="codeblock"> 
+        <code class="1c">
+            var arr = [];
+            let arralike = {a :"john" , age : 52}
+            arr.concat([3,4] , [5,6] , arralike);      
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+    </div>
+
+    <p>to concat properties , set [symbol.IsConcatSpreadable] to true<sub>make sure length property is also in object</sub></p>
+    
+    <div class="codeblock"> 
+        <code class="1c">
+            var arr = [];
+            let arralike = {1 :"john" ,
+                            age : 52 ,
+                            [Symbol.isConcatSpreadable]: true ,
+                             length : 2 }
+            arr.concat([3,4] , [5,6] , arralike);      
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+    </div>
+
+    <li>arr.indexOf(item,from index)<sub>-1 if no match</sub></li>
+    <li>arr.lastIndex(item , from index)<sub>-1 if no match</sub></li>
+    <li>arr.includes(item , from)<sub>uses === and not ==</sub></li>
+    <li>arr.find(fn(item , index, arr))<sub>is called again and again for arr elements , once true is returned search is stopped. Returns just a single element</sub></li>
+    <li>arr.filter(fn(item , index, arr))<sub>multiple elements are returned</sub></li>
+    <li>arr.map(fn(item , index, arr))<sub>calls method for each element and result arra is returned</sub></li>
+    <li>arr.sort(function)</li>
+    <li>arr.reverse()</li>
+    <li>arr.join(',')<sub>returns string</sub></li>
+    <li>str.split(',')<sub>returns array</sub></li>
+    <li>arr.reduce(function(item,index,array,prevValue))</li>
+    
+    <div class="codeblock"> 
+        <code class="1c">
+            arr = [1,2,3,4,5]
+            arr.reduce((sum , current) => sum + current)      
+         </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+    </div>
+    <li>forEach, runs foreach elements </li>
+    <li>Array.IsArray[] to check if something is array</li>
+    <li>Almost every array function has "this" arg except sort</li>
+</ul>
+<hr/>
+<h1>Iterable</h1>
+<p>Are abstraction of arrays</p>
+<p>Allow ud to use for-of loop</p>
+<p><b>to make an iterator , add a method called symbol.iterator</b></p>
+<ul>
+
+    <li>
+        when for-of is called , it calls Symbol.Iterator method
+    </li>
+    <li>method must return an iterator (an object with next method)</li>
+    <code>next() --> {done : true ,value : "abc"}</code>
+    <li>iterables are objects which implement symbol.iterator and Arrays are objects with Indexes</li>
+    <li><b>Array from iterator</b> Array.from(arraylike)</li>
+    <li><b>Array from iterator</b> <code>Array.from(arraylike , fn )</code></li>
+
+</ul>
+
+<div class="codeblock"> 
+    <code class="1c">
+        
+            let arr = [1,2,3,4,5,6,7,8,9];
+            var i = -1;
+            var user = {
+             }
+            user[Symbol.iterator] = function() {
+                return {
+                        next()
+                            {
+                                i++;
+                                console.log("abc");
+                                return {done : i > arr.length -1 ,value : arr[i] }
+                            }
+                        }
+
+            }
+            
+            var data =""
+            for (let u of user)
+            {
+                data = data + " " + u;
+            }  
+            data;   
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+
+<p>get next value without calling for-of</p>
+
+<div class="codeblock"> 
+    <code class="1c">
+        
+            let arr = [1,2,3,4,5,6,7,8,9];
+            var i = -1;
+            var user = {
+             }
+            user[Symbol.iterator] = function() {
+                return {
+                        next()
+                            {
+                                i++;
+                                console.log("abc");
+                                return {done : i > arr.length -1 ,value : arr[i] }
+                            }
+                        }
+
+            }
+            
+            var data = user[Symbol.iterator]();
+            data.next().value;
+            
+          
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+
+</div>
+<h2> Map , set , weakmap , weakSet </h2>
+<h4>Map</h4>
+<p>Map is a collection of keyed data , just like an object</p>
+<p>Methods:-</p>
+
+<ul>
+    <li>new Map()</li>
+    <li>map.set(key,value)</li>
+    <li>map.get(key)</li>
+    <li>map.has(key)</li>
+    <li>map.delete(key)</li>
+    <li>map.clear()</li>
+    <li>map.size()</li>
+    <li>map.set()</li>
+    <li>create map from object<sub>Object.entries also returns key/value pairs in that format</sub></li>
+    <code>let map = new Map([
+        ['1' , 'Str1'],
+        [1, 'num1'],
+        [true , 'bool1']
+        ])
+    </code>
+    <li>Map.Keys() , map.Values() , map.entries()</li>
+    <li>foreach also available in Map()</li>
+</ul>
+
+<h4>Set</h4>
+<p>is a collection of values</p>
+<ul>
+    <li>new Set(iterable)</li>
+    <li>set.add(value)</li>
+    <li>set.delete(value)</li>
+    <li>set.has(value)</li>
+    <li>set.clear()</li>
+    <li>set.size</li>
+    <li>Adding duplicate to set will not add a new element but just give an error</li>
+    <li>iteration is possible using foreach /for-of</li>
+</ul>
+
+
+<h4>Weak-map</h4>
+<p>It is removed from memory once object is null</p>
+<ul>
+    <li>only object is allowed as Key</li>
+    <li><code>let w = new WeakMap();
+        let obj = {};
+        w.set(obj,"OK");
+        obj = null ,
+        w.get(obj); //undefined 
+    </code></li>
+    <li>weak map does not have keys() , values() entries().cant be iterated over as well </li>
+    <li></li>
+</ul>
+
+
+
+<h4>Object methods , Keys() , values() , entries()</h4>
+<p>these methods are also supported by Map , set , Array</p>
+<ul>
+    <li>Object.Keys(obj)</li>
+    <li>Object.Values(obj)</li>
+    <li>Object.Entries(obj) , returns k,v pairs </li>
+    <li>All these prperties return non-symbolic properties</li>
+    <li>to get symbolic properties , use Object.getOwnPropertySymbols</li>
+    <li>Object.entries(obj) and Object.Fromentries(arrofobj) are compementary</li>
+</ul>
+<p>Object.keys</p>
+<div class="codeblock"> 
+    <code class="1c">
+    var obj = {
+    name : "Anurag" ,
+    age : 5
+    }         
+    Object.keys(obj);
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Object.values</p>
+<div class="codeblock"> 
+    <code class="1c">
+    var obj = {
+    name : "Anurag" ,
+    age : 5
+    }         
+    Object.values(obj);
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Object.entries</p>
+<div class="codeblock"> 
+    <code class="1c">
+    var obj = {
+    name : "Anurag" ,
+    age : 5
+    }         
+    Object.entries(obj);
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<p>include symbols</p>
+<div class="codeblock"> 
+    <code class="1c">
+    var sym =  Symbol("symbol");
+    var obj = {
+            [sym] : 45,    
+            name : "Anurag" ,
+            age : 5
+        }         
+    Object.getOwnPropertySymbols(obj)[0].toString()
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<h1>Destructuring</h1>
+<p>A special syntax to allow us to "unpack" arrays or object into a bunch of variables</p>
+
+<p>destructuring</p>
+<div class="codeblock"> 
+    <code class="1c">
+    let arr = [1,2,3];
+    let [A,B,C] = arr;
+    A;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<p>Array destructuring</p>
+<div class="codeblock"> 
+    <code class="1c">
+    let arr = [1,2,3,4,5,6,7,8];
+    let [A,B,C , ...rest] = arr;
+    rest[1];
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<p>Object destructuring</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let obj = {k:"Andy" , l : "test"};
+        let {k,l} = obj;
+        k;
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>Json.Parse and .stringify() calls .toJson if available else uses in-built one</p>
+<div class="codeblock"> 
+    <code class="1c">
+        json.parse();
+        json.stringify();
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+<p>REST params and spread. Object.assign() appends and copies data from src to destination</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let obj1 = {
+            a: "abc",
+            age : 54
+        }
+
+        let obj2 = {
+            a1: "test",
+            age1 : 45
+        }
+
+        let dest = {}
+        Object.assign(dest,obj1,obj2);
+        dest.a1;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+
+
+<p>There is also an arguement variable where we can access arrays</p>
+
+<p>When in a function call , ...arr is expanded to an iterable</p>
+<h4>Named function expressions vs function expression vs Anonymous functions</h4>
+<p>to refer current function inside body , use NFE</p>
+<p>NFE's are not hoisted</p>
+<p>function expression vs function declaration.fnction expression is used for IIFE</p>
+<p>there is no internal name for function declaration</p>
+<p>NFE's function name are not visible outside functin</p>
+
+<div class="codeblock"> 
+    <code class="1c">
+        var t = "";
+        var k = "";
+      var func = function abc(a)
+      {
+            if(a === 1)
+            {
+                abc(2);
+                k = a;
+            }
+            t = a;
+      }
+
+      func(1);
+      k;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<br/>
+<h1>decorators and call forwarding</h1>
+<p>Caching :- any CPU intensive program can be cached for response</p>
+<p>a decorator is a function that takes another function and alters its behaviour </p>
+<p>Three decorators :-</p>
+<ul>
+    <li>Call</li>
+    <li>apply</li>
+    <li>bind</li>
+</ul>
+
+<p>Syntax of call :- fn.call(context , arg1 , arg2 ..)</p>
+
+<div class="codeblock"> 
+    <code class="1c">
+        var t = "";
+        function say(phase)
+        {
+            t = this.name + " " + phase;
+        }
+        let user = { name : "John"};
+        say.call(user , "Hello");
+        t;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+<p>Syntax of apply :- fn.apply(context , args)</p>
+<p>apply accepts only iterable , call can accept iterable using ...</p>
+
+
+<div class="codeblock"> 
+    <code class="1c">
+        var t = "";
+        function say(phase)
+        {
+            t = this.name + " " + phase;
+        }
+        let user = { name : "John"};
+        say.call(user , "Hello");
+        t;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+<p>Bind</p>
+<p>returns a bound function that has same context as with call</p>
+<div class="codeblock"> 
+    <code class="1c">
+        var t = "";
+        function say(phase)
+        {
+            t = this.name + " " + phase;
+        }
+        let user = { name : "John"};
+        var bound = say.bind(user);
+        bound("John");
+        t
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    <p>There is also another overload of bind . check</p>
+
+</div>
+
+<h4>Currying and partial function</h4>
+<p>currying is converting a function of type method(a,b,c) to method(a)(b)(c)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        // Normal function
+        function addition(x, y) {
+             return x + y;
+            }
+        // Curried function
+    function addition(x) {
+            return function(y) {
+        return x + y;
+    }
+}   
+
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    <p>There is also another overload of bind . check</p>
+
+</div>
+
+<h4>arrow functions</h4>
+<ul>
+    <li>Arrow functions have no this</li>
+    <li>cant access "arguements" variable</li>
+    <li>Arrow functions does not have new construtor calls</li>
+</ul>
+
+<h3>Property flags + descriptors</h3>
+<p>Object prop has 4 attributes</p>
+<ul>
+    <li>value<sub>actual value</sub></li>
+    <li>writeable<sub>if true it can be changes else read-only</sub></li>
+    <li>enumerable<sub>actuif true available in loopsal value</sub></li>
+    <li>configurable<sub>if true property can be deleted and attribute can be modified</sub></li>    
+</ul>
+
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"}
+       let descriptor = Object.getOwnPropertyDescriptor(obj , "A")
+       descriptor.__proto__.toString = function()
+       {
+         return "value :-" + this.value + "\n" + "writeable:-" + this.writable + "\n"+
+          "enumerable:- " + this.enumerable + "\n" + "configurable:- "+ this.configurable;
+           
+       }
+       descriptor;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    
+</div>
+<p>There is also another overload of bind . check</p>
+
+
+<p>Object.defineProperty</p>
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"}
+       let descriptor = Object.defineProperty(obj , "A" ,
+       {
+           value : "John"
+       });
+       
+       descriptor.A;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+<p>writeable</p>
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"}
+       let descriptor = Object.defineProperty(obj , "B" ,
+       {
+          value : "init", writeable : false 
+       });
+       
+       descriptor.B = "test1";
+       descriptor.B
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+<p>non-enumerable</p>
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"}
+       let descriptor = Object.defineProperty(obj , "B" ,
+       {
+           value : "jason" , enumerable : false
+       });
+       var l = ""
+       for(var t of obj)
+       {
+          //error obj is not iterable 
+       }
+       
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+
+<p>non-configurable</p>
+<p>Only one way road , once set to true "defineproperty" cant change it</p>
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"}
+       let descriptor = Object.defineProperty(obj , "B" ,
+       {
+           value : "jason" , configurable : false
+       });
+       //trying to configure descriptor
+       Object.defineProperty(descriptor , "B" ,
+       {
+           value : "john" , configurable : false
+       });
+       
+       //cannot redefine property
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+
+
+<p>we can use defineProperty to clone objects</p>
+<div class="codeblock"> 
+    <code class="1c">
+       let obj = {A:"test"};
+       let prop = Object.getOwnPropertyDescriptors(obj);
+       let clone = Object.defineProperty(obj , prop.A
+       );
+      
+       obj == clone
+      
+
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<p>To seal an object globally , use  <code>Object.preventExtension(obj)</code></p>
+
+
+<h2>Getter and setter</h2>
+<p>There are two tyepes of proeprties</p>
+<ul>
+    <li>Data properties</li>
+    <li>accesor properties</li>
+</ul>
+
+<p>Accesors  have 4 properties</p>
+<ul>
+    <li>get<sup>a fun that is called when a prop is get</sup></li>
+    <li>set<sup>a fn that is called when a prop is set</sup></li>
+    <li>enumerable</li>
+    <li>configurable</li>
+</ul>
+
+
+<div class="codeblock"> 
+    <code class="1c">
+        var name = "";
+      let user =  {
+          
+          get fullname(){
+            return "different Andy";
+          },
+          set fullname(value)
+          {
+            name = value;
+          }
+      }
+       user.fullname = "Andy";
+       user.fullname;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+
+<p>We can define get/set internally like so:-</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let user = {};
+       Object.defineProperty( user, "abc" , {
+           set() {
+
+           }
+       });
+    user.abc;
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<h2>Prototypes</h2>
+<ul>
+    <li>In JS all objects have [[prtotype]] property</li>
+    <li>its either null or points to an object but never both or primitive type</li>
+    <li>__proto__ is a getter setter for prototype</li>
+    <li>this keyword is not affected by prototype , it always points to prev object</li>
+    <li>If a metod or prop is not present in object , it is found in prototype</li>
+    <li></li>
+</ul>
+
+<p>Every function has a default prototype property.</p>
+<p>Default prototype is an object with only property "contructor" that points back to itself</p>
+<p>When we use new F() , objects [[prototype]] is set to F.prototype</p>
+
+<sup>Default prototype is an object with only property "contructor" that points back to itself</sup>
+<div class="codeblock"> 
+    <code class="1c">
+        function Rabbit()
+        {
+
+        }
+        Rabbit.prototype.constructor
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<p>When we use new F() , objects [[prototype]] is set to F.prototype</p>
+<div class="codeblock"> 
+    <code class="1c">
+        function Rabbit()
+        {
+
+        }
+        let rabbit = new Rabbit();
+        rabbit.constructor == Rabbit
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<p>ctor 's prototype points to object prototype</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let obj = {};
+       obj.__proto__ == Object.prototype
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<ul>
+    <li>For primitives such as Number , string , boolean a wrapper is created at runtime</li>
+    <li>Null and undefined have no wrapper</li>
+</ul>
+
+<p>We can extend something with prototype like so:-</p>
+<div class="codeblock"> 
+    <code class="1c">
+        String.prototype.show = function(){
+            alert(this);
+        }
+        "abc".show();
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<p>Generally polyfill libs use this t port a feature in ES5 from ES6</p>
+<h4>Ways to get/set prototype</h4>
+<ul>
+    <li>Object.create(proto [ ,descriptors)</li>
+    <li>Object.setPrototypeOf(obj)</li>
+    <li>Object.getPrototypeOf(obj)<sub>returns prototype of obj</sub></li>
+    <li>Object.create(null)</li>
+</ul>
+
+<p>Get key values from JS</p>
+<ul>
+    <li>Object.keys(obj)</li>
+    <li>Object.Values(obj)</li>
+    <li>Object.Entries(obj)</li>
+    <li>Object.getOwnProperty(obj)<sub>gets only symbolic properties</sub></li>
+    <li>Object.ownKeys(obj)<sub>non enumerable props</sub></li>
+    <li>Reflect.OwnKeys(obj)<sub>when we want all props</sub></li>
+    <li>Obj.hsOwnProperty(key)<sub>For differentiating built-in vs inherited</sub></li>
+</ul>
+
+<h3>3 ways to implement inheritance</h3>
+<ul>
+    <li>factory based<sub>without new keyword</sub></li>
+    <li>prototype based<sup>Rabbit.prototype.__proto__ = animal.prototype</sup></li>
+    <li>fn based<sub>with new keyword</sub></li>
+</ul>
+<h2>Class</h2>
+<p>Classes in ES6</p>
+<div class="codeblock"> 
+    <code class="1c">
+      class User {
+          constructor(name)
+          {
+              alert(name)
+          }
+
+          sayhi(name)
+          {
+              alert(name);
+          }
+      }
+
+      let user = new User("hello");
+      user.sayhi("John");
+
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+
+<ul>
+    <li>ctor can be called w/o new keyword</li>
+    <li>classes have default ctor</li>
+    <li>classes are non-enumerable</li>
+    <li>classes always use strict</li>
+    <li>classes ay have get /set</li>
+    <li>In a class only get/set and methods are allowed, no prop:value</li>
+    <li>can have static method , this inside it will be class name and can be called by class name</li>
+</ul>
+
+<p>.super.method() calls parent class method</p>
+<p>.super() calls parent class ctor</p>
+<p>super is not accesible in arrow function</p>
+<p>When we have A: B then A() must call super()</p>
+<p>When we have A: B then A() must call super() before calling this, this is because JS automatically does not call parent class ctor</p>
+<code>
+    ctor(...args)
+    {
+        ctor(...args)
+        {
+            super(...args);
+        }
+    }
+</code>
+<p>To point immediate parent [[HomeObject]]</p>
+<p>static inheritance also supported un User defined objects</p>
+
+<div class="codeblock"> 
+    <code class="1c">
+    class Animal{
+        static abc(name)
+        {
+            alert(name);
+        }
+    }
+
+    class Rabbit extends Animal{
+
+    }
+    Rabbit.abc("hello");
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+<p>static inheritance doesn't work with inbuilt objects</p>
+
+
+<p>instanceof</p>
+<p>The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
+</p>
+<code>object instanceof constructor</code>
+<div class="codeblock"> 
+    <code class="1c">
+    class Rabbit{
+
+    }
+    var rabbit = new Rabbit();
+    rabbit instanceof Rabbit
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<p>symbol.hasInstance</p>
+<p>Custom implementation of instanceof</p>
+<p>If there is no implementation of symbol.hasInstance them it is searched in prototype chain</p>
+<div class="codeblock"> 
+    <code class="1c">
+        class MyArray {  
+            static [Symbol.hasInstance](instance) {
+              return false
+            }
+          }
+          [] instanceof MyArray // false
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+   
+</div>
+
+<h2>Mixins</h2>
+<p>Mixins is a class that contains method for use by other classes w/o having to be the parent class</p>
+<div class="codeblock"> 
+    <code class="1c">
+        const knowsBackend = 
+        {
+            testBackEnd()
+            {
+                return true;
+            }
+        }
+
+        const knowsFrontEnd = 
+        {
+            testFrontEnd()
+            {
+                return true;
+            }
+        }
+
+        const user = Object.assign({} , knowsBackend ,knowsFrontEnd);
+        user.testBackEnd();
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+<h2>Error Handling</h2>
+<div class="codeblock"> 
+    <code class="1c">
+       try
+       {
+           let user = {};
+           user.test;
+           user.test();
+       }
+       catch(err)
+       {
+           err.name + "###" + err.message + "###" + err.stack;
+       }
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<p>To create your own errors</p>
+<ul>
+    <li>Error()</li>
+    <li>SyntaxError()</li>
+    <li>ReferenceError()</li>
+    <li>TypeError()</li>
+</ul>
+<p>to throw erro use <code>throw ex</code></p>
+
+<p>Can exten a error class</p>
+<code>
+    class AbcError extends error{
+
+    }
+</code>
+<p>We have window.onerror callback that can be used to log errors</p>
+<h2>promises</h2>
+<p>Promise is a js object that that links producing and consuming code</p>
+<div class="codeblock"> 
+    <code class="1c">
+        //producer code
+      let promise = new Promise((resolve ,reject) =>
+      {
+          //async code
+        navigator.geolocation.getCurrentPosition((position) =>
+        {
+            //on successfully working, call then at consumer with passed params
+            resolve(position.coords.latitude + " "+ position.coords.longitude)
+        } 
+        //on failure , call catch at consumer code with these params
+        , ()=> reject("user is paranoid"));
+      
+      });
+
+      //consumer code
+      promise
+      .then((value) => alert(value))
+      .catch((value) => alert(value))
+      .finally(()=>alert("done with geolocation DEMO"));
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<p>promise has two properties:-</p>
+<ul>
+    <li>state</li>
+    <li>result</li>
+</ul>
+<p>promise can either resolve or reject and only once</p>
+<p>a promise can return another promise , but it need not . It can return an object with then() functions</p>
+<p>fetch returns a promise</p>
+<p>any error in then is caught by catch outside</p>
+<p>any uncaught error is sent to windows eventhandler , "unhandled rejections"</p>
+
+
+<table>
+    <tr>
+        <td style="background-color: brown;">state</td>
+        <td style="background-color: brown;">result</td>
+        
+    </tr>
+    <tr>
+        <td>pending</td>
+        <td>undefined</td>
+    </tr>
+    <tr>
+        <td>rejected</td>
+        <td>error</td>
+        
+    </tr>
+    <tr>
+        <td>
+            fulfilled
+        </td>
+        <td>
+            done
+        </td>
+    </tr>
+</table>
+<h4>Promise.API</h4>
+<ul>
+    <li>Promise.All(array of promises)</li>
+    <li>Promise.All(Iterable of promises)</li>
+    <li>Promise.allSettled</li>
+    <li>Promise.race([])</li>
+    <li>Promisification</li>
+</ul>
+
+<p>Promise.All(array of promises)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let promise1 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("1")} , 1000);
+        });
+
+        let promise2 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("2")} , 2000);
+        })
+
+        let promise3 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("3")} , 5000);
+        })
+
+        let finalPromise =  Promise.all([promise1,promise2,promise3]);
+        finalPromise.then(()=> alert("success")).catch(() => alert("failure"))
+     </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+
+<p>Promise.allSettled(Iterable  or array of promises)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let promise1 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("1")} , 1000);
+        });
+
+        let promise2 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("20")} , 2000);
+        })
+
+        let promise3 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("30")} , 5000);
+        })
+
+        let finalPromise =  Promise.allSettled([promise1,promise2,promise3]);
+        finalPromise.then((arg)=> arg.forEach((x) => alert(x.status + " " + x.value))).catch(() => alert("failure"))
+        
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+
+<p>Promise.Race(Iterable  or array of promises)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        let promise1 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("1")} , 1000);
+        });
+
+        let promise2 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("20")} , 2000);
+        })
+
+        let promise3 = new Promise((resolve,reject)=>
+        {
+            setInterval(()=>{resolve("30")} , 5000);
+        })
+
+        let finalPromise =  Promise.race([promise1,promise2,promise3]);
+        finalPromise.then((x)=>  alert(x)).catch(() => alert("failure"))
+        
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+
+
+<p>Promisification(turns a function that accepts a callback to promise)</p>
+<div class="codeblock"> 
+    <code class="1c">
+        
+        function withcallback(x , cb)
+        {
+            cb(x);
+        }
+
+        withcallback("2" , console.log)
+        let finalPromise =  promisify(withcallback);
+        finalPromise.then((x)=>  alert(x)).catch(() => alert("failure"))
+        //custom implementation needed
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+
+<h4>Async/await</h4>
+<p>async keyword can be put before any function</p>
+<code>
+    async function f(){
+        return 1;
+    }
+</code>
+<p>this means it will return a promise f().then(alert) can be used</p>
+<p>we could also return a promise , it will also be same as above</p>
+<code>
+    async function f()
+    {
+        return promise.resolve(1);
+    }
+    f().then(alert);
+</code>
+<p>JS awaits till promise id resolved and then returns a result</p>
+<div class="codeblock"> 
+    <code class="1c">
+        async function f()
+        {
+        let promise = new Promise((resolve , reject) => 
+        {
+            setTimeout(() => resolve("done") , 1000)
+        })
+
+        let result = await promise;
+        alert(result);
+    }
+    f();
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<ul>
+    <li>we cant use async in regular functions , only in async functions</li>
+    <li>cant be used at top level , ex <code>let res = await fetch(""") , use IIFE instead</code></li>
+    <li>await can accept thenables , not necessarily promises</li>
+    <li>error in case of async</li>
+</ul>
+    <code>
+        async function f()
+        {
+            await promise.reject(new Error(""))
+        }
+
+        is same as 
+        async function f()
+        {
+            throw new Error("whoops");
+        }
+    </code>
+
+<h3>Generatos</h3>
+<ul>
+    <li><b>function*</b> can return multiple values</li>
+    <div class="codeblock"> 
+        <code class="1c">
+            function* generatorfunc(index) {
+                while (index < 2) {
+                  yield index++;
+                }
+              }
+            const iterator =  generatorfunc(-2)
+            iterator.next().value
+            iterator.next().value
+            iterator.next().value
+        </code>
+        <br/>
+        <code class="1a"></code>
+        <br/>
+        <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+    </div>
+    <li>each generator object has a next method</li>
+    <li>each next returns an object {value : , done : }</li>
+    <li>function* f() or function *f() both are correct</li>
+    <li>generator fns are iterables , can be accesed in for-of loop. loop will igore vlues when done is true</li>
+    </ul>
+
+    <h4>Async iterator generator</h4>
+    <p>Three differences between normal iterator and async iterator</p>
+    <ul>
+        <li>instead of Symbol.Iterator use Symbol.asyncIterator</li>
+        <li>next() should return a promise</li>
+        <li>to loop use await for(var t of iter)</li>
+        <li>spread does not works with asyc iterables</li>
+    </ul>
+<h3>Modules</h3>
+<p>using export we can export functions</p>
+<div class="codeblock"> 
+    <code class="1c">
+        export function sayhi()
+        {
+
+        }
+
+        import {sayhi} from '../sayhi.js'
+        sayhi('john');
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+
+<p>for browsers we need to use </p>
+<code>
+    <script type="module">
+    import {sayhi} from '../sayhi.js'
+    </script>
+</code>
+
+<p>difference between module vs normal files</p>
+<ul>
+    <li>modules always use strict</li>
+    <li>all modules have top-level scope , and cant share vars</li>
+    <li> module code is evaluated only once when imported</li>
+    <li>Also changes ade to exported code is visible to all  modules</li>
+    <li>this is undefined in module</li>
+</ul>
+<p>script type="module" is deferred , in contrast to script</p>
+<p>script type="module" src="" , doesnt block HTML processing , they load in parallel</p>
+<p>running of module script happens, only after HTML is ready</p>
+<p>first script in page is executed first</p>
+<p>If we want modules to run immediaately , use async keyword</p>
+<code>
+    <script async type="module">
+        //doesnt wait for HTML load
+    </script>
+</code>
+<p>bare modules are not allowed in browser. import w/o script src  , import {sayhi} from 'sayhi'  // error </p>
+<p>nomodule -> old browser do not understand modules need this</p>
+<h4>How build tools work</h4>
+<p>take main module file to be put in <code> script type = "module"</code></p>
+<p>gets its dependencies , and imports it and then imports of imports</p>
+<p>gets it all in a single file</p>
+<p>processes other optimizations</p>
+<h4>export before declarations</h4>
+<p>We can export any declarations , fn , class , variable</p>
+
+<code>
+    export let months = ['month' , 'feb']
+    export const MOD_BEC = 2015;
+    export class user{
+        ctor(name)
+        {
+            this.name _name ;
+        }
+    }
+    //no semicolon needed
+</code>
+<p>
+export separately:- 
+function sayHi(user)
+{
+
+}
+export {sayHi}
+</p>
+
+<p>
+    <code>
+        import x from ''
+        vs
+        import {sayHi} from ''
+        
+    </code>
+    webpack will still keep all the unused module import
+</p>
+
+<p>use as as import statement</p>
+<code>
+    import {sayhi as hi} from ''
+    export {sayhi as asdf} // official name to be used by all modules
+</code>
+<p>default exports</p>
+<code>
+
+    export default class user{
+
+    }
+
+</code>
+we try to keep a single export per file 
+
+<p>import user1 from ''</p>
+<ul>
+    <li>while importing default we can use :- our our name to import</li>
+    <li>No curly braces</li>
+    <li>we can have both default & normal export in same module</li>
+    <li>we could also use export{sayhi as default}</li>
+    <li>import both default and named in same line .import {default as user , sayhi} from ''</li>
+    <li>default exporting is discouraged as each dev can use own</li>
+    <li>re-export also possibe , export {sayhi} from ''</li>
+    <li>re-export  deafult dont use , export user from '' but use  export {default as sayhi} from ''</li>
+    <li>export * from '' --> exports only named xports and ignores default</li>
+    <li>export {default} from '' --> will re-export defaut </li>
+    </ul>
+
+<h4>Dynamic Import</h4>
+<p>all previous imports were static</p>
+<p>import from dynamic path. , Import() loads a module & returns a promise</p>
+<code>
+    let modulePath = prompt(" ");
+    import(modulePath).then().catch();
+
+    or 
+
+    let {hi , bye} = await import();
+    hi();
+    bye();
+</code>
+<p>In case of defalt dynamic import</p>
+<code>
+    let ob = await import();
+    let sy = ob.default;
+    say();
+</code>
+
+<h4>Proxy and reflect</h4>
+<p>A proxy object wraps another object and intercepts operation like reading and writing</p>
+<code>
+let proxy = new Proxy(target , handler);
+handler has 
+a) config :- an object 
+b) traps -> get (for reading a prop)
+set (for writing to prop)
+
+</code>
+<div class="codeblock"> 
+    <code class="1c">
+        let target = {} ;
+        let proxy = new Proxy(target , {});
+       // since no handler traps all operation are forwarded to target
+    proxy.test = 5;
+    proxy.test
+    </code>
+    <br/>
+    <code class="1a"></code>
+    <br/>
+    <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
+</div>
+<p>list of traps</p>
+<ul>
+    <li>get</li>
+    <li>set</li>
+    <li>has</li>
+    <li>deleteproperty</li>
+    <li>apply</li>
+    <li>construct</li>
+    <li>getPrototypeOf</li>
+    <li>setPrototypeOf</li>
+    <li>isExtensible</li>
+    <li>preventExtensions</li>
+    <li>defineProperty</li>
+    <li>getOwnPropertDescriptors</li>
+    <li>ownKeys</li>
+</ul>
+
+<h3>Learning from exercises</h3>
+<ul>
+    <li>use String(num) instead of num.toString() --> doesn't wor</li>
+    <li>use split('') to convert string to char array</li>
+    <li>carLot[make] is read/writeable . here make is a variable</li>
+    <li>while using Object.defineProperty , define all prop bcoz by default its writable : false</li>
+    <li>String.fromCharCode(ascii_code) to convert ascii to char</li>
+    <li>string indexOf to check if something is inside another , for array , use includes</li>
+    <li>instead of trying to create json manually , use var obj = {} , obj.abc = ""</li>
+    <li>Array(3) creates a blank array of size 3</li>
+    <li>arr.concat(arr1) method , concats two arrays but does not modifies arr , it returns the result</li>
+    <li>array concat returns [[a,b,c],[1,2,3]]</li>
+    <li>const getBudgets = arr => arr.reduce((a,v) => a + v.budget, 0);
+    </li>
+    <li>+(string) t change to int</li>
+    <li>String(i).split("").reverse().join("") reverse a string</li>
+    <li>[arr1,arr2] also works to make array of arrays</li>
+    <li>arr.flat() same as [].concat(...args)</li>
+    <li>arr.map((x) => parseInt(x)) is same as arr.map(Number)</li>
+    <li>arr1.every((x, i) => x == arr2[i]) arr.every can take two args </li>
+    <li>A".repeat(21)--> "AAAAAAAAAAAAAAAAAAAAA"</li>
+    <li>The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.</li>
+    <li>need to have hasOwnProperty guard over for-in loop , else prototype will be looped</li>
+    <li>arr.reduce reduces arr to a single element</li>
+    <p>The first time the callback is called, accumulator and currentValue can be one of two values. If initialValue is provided in the call to reduce(), then accumulator will be equal to initialValue, and currentValue will be equal to the first value in the array. If no initialValue is provided, then accumulator will be equal to the first value in the array, and currentValue will be equal to the second.
+
+        Note: If initialValue is not provided, reduce() will execute the callback function starting at index 1, skipping the first index. If initialValue is provided, it will start at index 0.
+        
+        If the array is empty and no initialValue is provided, TypeError will be thrown.
+        
+        If the array only has one element (regardless of position) and no initialValue is provided, or if initialValue is provided but the array is empty, the solo value will be returned without calling callback.</p>
+    <li>if we want to convert number to string array use [...(''+n)]</li>    
+    <li>instead of string(n) use n+''</li>
+    <li>arr.some tests if any function matches a criteria , arr.every tests if all matches a function test</li>
+    <li>Flattens out the full array :- arr.flat(Infinity).length;</li>
+    <li>to make a regex match greedy use ? at the end , look ahead works as (?=abc) looks for next char but does not include in group </li>
+    <li>s.map(x => ({name: x.name, topNote: Math.max(...x.notes, 0)}))  trying to create an object inside map use ( before {</li>
+    <li>map((x) => ({[x[0]] : x[1]}) ) ; wrap key in []</li>
+    <li>push does not return  array , conat returns added array</li>
+    <li>"abcd ".trimEnd() trims special hars at end</li>
+    <li>"".replace("","") replaces only first character , to replace all use "".replace(/abc/g,"")</li>
+    <li>https://edabit.com/challenge/g2QxB5HCE9hN3PS75</li>
+    <li>map.entries() returns mapiterator, this can be used with for/in or Array.From() </li>
+    <li>in case of reduces , where you are not able to assign anything to accumulator , return it </li>
+    <li>to check if gcd is 1 or not loop and check if same number divides each</li>
+    <li>to find if there are duplicates  c.reduce((x, y) => x.add(y), new Set()).size == c.length</li>
+	<li>from set to array use array.from , remove single element from anonymous array use ([].slice(1)).array method</li>
+</ul>
+</body>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+   <script>
+
+       function calc()
+       {
+           var element = event.target;
+           var snippet = Array.from( $(element)[0].parentElement.children).find((x) => x.className == '1c').textContent 
+            Array.from( $(element)[0].parentElement.children).find((x) => x.className == '1a').textContent = eval(snippet)
+           
+       }
+       
+      
+           
+
+    </script>
+    <style>
+    code {
+        display: block;
+        white-space: pre-wrap   
+        }
+
+    .codeblock
+    {
+        background-color: bisque;
+        border-radius: 4px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    body{
+        margin-left: 20px;
+        background-color: grey;
+    }
+p , li{
+    color: white;
+}
+    .btn
+    {
+        margin-left: 5px;
+        margin-bottom: 5px;
+        
+    }
+
+    table tr td{
+        border-width: 2px;border-style: solid;border-color: black;
+    }
+    </style>
+</head>
+</html>
