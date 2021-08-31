@@ -2265,6 +2265,20 @@ set (for writing to prop)
     <li>string is array like , can convert to Arrayusing split also enter into Set(arraylike) </li>
     <li>new function() creates an object , attaches prop to it , returns this back . When in obj , this rfeers to obj when without it , it refers to global variable </li>
 </ul>
+    
+    <h4>Browser environment, specs</h4>
+    <img src="https://javascript.info/article/browser-environment/windowObjects.svg"/>
+    <p>BOM : -browser object model , describes set of APIs other than DOM .Actuall specification is different for each api</p>
+    <p>There are only two top-level exclusions:
+
+Spaces and newlines before <head> are ignored for historical reasons.
+If we put something after body, then that is automatically moved inside the body, at the end, as the HTML spec requires that all content must be inside <body>. So there can’t be any spaces afterbody. </p>
+    
+        <p> autocorrection is automaticlly doen by browsers . If the browser encounters malformed HTML, it automatically corrects it when making the DOM.</p>
+        <p> there are 12 node types :- text , element , comment , document -entry point are a few of them  </p>
+        <p> The childNodes collection lists all child nodes, including text nodes. document.body.childNodes[i]. Properties firstChild and lastChild give fast access to the first and last children. </p>
+        <p> document.body.childNodes is iterable , hence for of can be used but not array object , call Array.From to create Array </p>
+        <p> </p>
 </body>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
