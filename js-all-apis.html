@@ -2277,8 +2277,46 @@ If we put something after body, then that is automatically moved inside the body
         <p> autocorrection is automaticlly doen by browsers . If the browser encounters malformed HTML, it automatically corrects it when making the DOM.</p>
         <p> there are 12 node types :- text , element , comment , document -entry point are a few of them  </p>
         <p> The childNodes collection lists all child nodes, including text nodes. document.body.childNodes[i]. Properties firstChild and lastChild give fast access to the first and last children. </p>
-        <p> document.body.childNodes is iterable , hence for of can be used but not array object , call Array.From to create Array </p>
-        <p> </p>
+        <p> document.body.childNodes is iterable , hence for of can be used but not array object , call Array.From to create Array , DOM collections are read only . all DOM collections are live . Please, don’t. The for..in loop iterates over all enumerable properties. And collections have some “extra” rarely used properties that we usually do not want to get:</p>
+        <p><html> = document.documentElement is root element </p>
+        <p> <body> = document.body  , <head> = document.head  . While walking the DOM , there maybe a chance that  body is not yet available . , when file is being read from top to bottom</p>
+        <p> The childNodes collection lists all child nodes, including text nodes. descendants are all deeply nested elements ,document.body.childNodes will print all child nodes just before this line </p>
+       <p>document.body.childNodes , Properties firstChild and lastChild give fast access to the first and last children.As we can see, childNodes looks like an array. But actually it’s not an array, but rather a collection – a special array-like iterable object.</p>
+            <p> Siblings , nextSibling , previousSibling , parentNode , </p>
+            <p> element only property . The links are similar to those given above, just with Element word inside:
+
+children – only those children that are element nodes.
+firstElementChild, lastElementChild – first and last element children.
+previousElementSibling, nextElementSibling – neighbor elements.
+parentElement – parent element.</p>
+            <p> why parentElement return an element but parentNode returns any node :- The reason is that the root node document.documentElement (<html>) has document as its parent. But document is not an element node, so parentNode returns it and parentElement does not.</p>
+                
+            <img src="https://javascript.info//article/dom-navigation/dom-links-elements.svg" />
+                
+            <p>Till now we described the basic navigation properties.
+
+Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
+
+Tables are a great example of that, and represent a particularly important case:
+
+The <table> element supports (in addition to the given above) these properties:
+
+table.rows – the collection of <tr> elements of the table.
+table.caption/tHead/tFoot – references to elements <caption>, <thead>, <tfoot>.
+table.tBodies – the collection of <tbody> elements (can be many according to the standard, but there will always be at least one – even if it is not in the source HTML, the browser will put it in the DOM).
+<thead>, <tfoot>, <tbody> elements provide the rows property:
+
+tbody.rows – the collection of <tr> inside.
+<tr>:
+
+tr.cells – the collection of <td> and <th> cells inside the given <tr>.
+tr.sectionRowIndex – the position (index) of the given <tr> inside the enclosing <thead>/<tbody>/<tfoot>.
+tr.rowIndex – the number of the <tr> in the table as a whole (including all table rows).
+<td> and <th>:
+
+td.cellIndex – the number of the cell inside the enclosing <tr>.</p>
+    
+    
 </body>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
