@@ -2309,14 +2309,168 @@ table.tBodies – the collection of <tbody> elements (can be many according to t
 tbody.rows – the collection of <tr> inside.
 <tr>:
 
-tr.cells – the collection of <td> and <th> cells inside the given <tr>.
+tr.cells – the collection of td and th cells inside the given <tr>.
 tr.sectionRowIndex – the position (index) of the given <tr> inside the enclosing <thead>/<tbody>/<tfoot>.
-tr.rowIndex – the number of the <tr> in the table as a whole (including all table rows).
-<td> and <th>:
+tr.rowIndex – the number of the tr in the table as a whole (including all table rows).
+td and th:
 
-td.cellIndex – the number of the cell inside the enclosing <tr>.</p>
-    
-    
+td.cellIndex – the number of the cell inside the enclosing tr.</p>
+            <p> getElement*, querySelector* </p>    
+            <p>If an element has the id attribute, we can get the element using the method document.getElementById(id), no matter where it is. Also, there’s a global variable named by id that references the element:
+example :-
+                <code>
+                    <div id="elem">
+  <div id="elem-content">Element</div>
+</div>
+                    
+                    we can use elem.style.background = 'red'; or window[elem-content] , unless there is a global js variable with same name
+                    </code>
+                
+                
+ </p>
+            
+            <p> The id must be unique. There can be only one element in the document with the given id.
+
+If there are multiple elements with the same id, then the behavior of methods that use it is unpredictable, e.g. document.getElementById may return any of such elements at random. So please stick to the rule and keep id unique. </p>
+            <p> Only document.getElementById, not anyElem.getElementById </p>
+            <p> By far, the most versatile method, elem.querySelectorAll(css) returns all elements inside elem matching the given CSS selecto . Pseudo-classes in the CSS selector like :hover and :active are also supported. For instance, document.querySelectorAll(':hover') will return the collection with elements that the pointer is over now (in nesting order: from the outermost <html> to the most nested one).</p>
+            <p> querySelector
+The call to elem.querySelector(css) returns the first element for the given CSS selector.
+
+In other words, the result is the same as elem.querySelectorAll(css)[0], but the latter is looking for all elements and picking one, while elem.querySelector just looks for one. So it’s faster and also shorter to write.</p>                
+            <p> querySelector
+The call to elem.querySelector(css) returns the first element for the given CSS selector.
+
+In other words, the result is the same as elem.querySelectorAll(css)[0], but the latter is looking for all elements and picking one, while elem.querySelector just looks for one. So it’s faster and also shorter to write. </p>
+            <p>The elem.matches(css) does not look for anything, it merely checks if elem matches the given CSS-selector. It returns true or false.</p>
+            <p>closest
+Ancestors of an element are: parent, the parent of parent, its parent and so on. The ancestors together form the chain of parents from the element to the top.
+
+The method elem.closest(css) looks for the nearest ancestor that matches the CSS-selector. The elem itself is also included in the search.
+
+In other words, the method closest goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned. </p>
+            
+            <p>getelementsby* returns live collection while queryselectors returns static collection , we couls also use elemA.contains(elemB)</p>
+            <table>
+<thead>
+<tr>
+<td>Method</td>
+<td>Searches by...</td>
+<td>Can call on an element?</td>
+<td>Live?</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>querySelector</code></td>
+<td>CSS-selector</td>
+<td>✔</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>querySelectorAll</code></td>
+<td>CSS-selector</td>
+<td>✔</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>getElementById</code></td>
+<td><code>id</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>getElementsByName</code></td>
+<td><code>name</code></td>
+<td>-</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><code>getElementsByTagName</code></td>
+<td>tag or <code>'*'</code></td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><code>getElementsByClassName</code></td>
+<td>class</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+</tbody>
+</table>
+            
+            
+            <h4>Node properties: type, tag and contents</h4>
+            <img src="https://javascript.info/article/basic-dom-node-properties/dom-class-hierarchy.svg" />
+            <p>The classes are:
+
+EventTarget – is the root “abstract” class. Objects of that class are never created. It serves as a base, so that all DOM nodes support so-called “events”, we’ll study them later.
+Node – is also an “abstract” class, serving as a base for DOM nodes. It provides the core tree functionality: parentNode, nextSibling, childNodes and so on (they are getters). Objects of Node class are never created. But there are concrete node classes that inherit from it, namely: Text for text nodes, Element for element nodes and more exotic ones like Comment for comment nodes.
+Element – is a base class for DOM elements. It provides element-level navigation like nextElementSibling, children and searching methods like getElementsByTagName, querySelector. A browser supports not only HTML, but also XML and SVG. The Element class serves as a base for more specific classes: SVGElement, XMLElement and HTMLElement.
+HTMLElement – is finally the basic class for all HTML elements. It is inherited by concrete HTML elements:
+HTMLInputElement – the class for <input> elements,
+HTMLBodyElement – the class for <body> elements,
+HTMLAnchorElement – the class for <a> elements,
+…and so on, each tag has its own class that may provide specific properties and methods.</p>
+                <h4>The “nodeType” property</h4>
+                <p>The nodeType property provides one more, “old-fashioned” way to get the “type” of a DOM node.
+
+It has a numeric value:
+
+elem.nodeType == 1 for element nodes,
+elem.nodeType == 3 for text nodes,
+elem.nodeType == 9 for the document object,
+there are few other values in the specification.</p>
+                <h4>Tag: nodeName and tagName</h4>
+                <p>Sure, the difference is reflected in their names, but is indeed a bit subtle.
+
+The tagName property exists only for Element nodes.
+The nodeName is defined for any Node:
+for elements it means the same as tagName.
+for other node types (text, comment, etc.) it has a string with the node type.</p>
+                <p>In other words, tagName is only supported by element nodes (as it originates from Element class), while nodeName can say something about other node types.
+              
+For instance, let’s compare tagName and nodeName for the document and a comment node:</p>
+                 <h4>innerHTML: the contents</h4>
+                <p>We can try to insert invalid HTML, the browser will fix our errors: If innerHTML inserts a script tag into the document – it becomes a part of HTML, but doesn’t execute.</p>
+                <p>As the content is “zeroed-out” and rewritten from the scratch, all images and other resources will be reloaded.
+
+In the chatDiv example above the line chatDiv.innerHTML+="How goes?" re-creates the HTML content and reloads smile.gif (hope it’s cached). If chatDiv has a lot of other text and images, then the reload becomes clearly visible.
+
+There are other side-effects as well. For instance, if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting innerHTML. And if there was an <input> with a text entered by the visitor, then the text will be removed. And so on.</p>
+                <h4>outerHTML: full HTML of the element</h4>                
+                <p>The outerHTML property contains the full HTML of the element. That’s like innerHTML plus the element itself.Beware: unlike innerHTML, writing to outerHTML does not change the element. Instead, it replaces it in the DOM.</p>
+                <code> let div = document.querySelector('div');
+
+  // replace div.outerHTML with <p>...</p>
+  div.outerHTML = '<p>A new element</p>'; // (*)
+
+  // Wow! 'div' is still the same!
+  alert(div.outerHTML); // <div>Hello, world!</div> (**)</code>
+                <p>nodeValue/data: text node content
+The innerHTML property is only valid for element nodes.
+
+Other node types, such as text nodes, have their counterpart: nodeValue and data properties. These two are almost the same for practical use, there are only minor specification differences. So we’ll use data, because it’s shorter.</p>
+                <p>textContent: pure text
+The textContent provides access to the text inside the element: only text, minus all <tags>.</p>
+                <p>Writing to textContent is much more useful, because it allows to write text the “safe way”.
+
+Let’s say we have an arbitrary string, for instance entered by a user, and want to show it.
+
+With innerHTML we’ll have it inserted “as HTML”, with all HTML tags.
+With textContent we’ll have it inserted “as text”, all symbols are treated literally.</p>
+                <p>More properties
+DOM elements also have additional properties, in particular those that depend on the class:
+
+value – the value for <input>, <select> and <textarea> (HTMLInputElement, HTMLSelectElement…).
+href – the “href” for <a href="..."> (HTMLAnchorElement).
+id – the value of “id” attribute, for all elements (HTMLElement).</p>
+                    <p>The “hidden” property
+The “hidden” attribute and the DOM property specifies whether the element is visible or not.
+
+We can use it in HTML or assign it using JavaScript, like this:</p>
+                    <p> div hidden>With the attribute "hidden"/div this element will be hidden</p>
 </body>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
