@@ -2471,6 +2471,141 @@ The “hidden” attribute and the DOM property specifies whether the element is
 
 We can use it in HTML or assign it using JavaScript, like this:</p>
                     <p> div hidden>With the attribute "hidden"/div this element will be hidden</p>
+                    
+                    
+So, DOM properties and methods behave just like those of regular JavaScript objects:
+
+They can have any value.
+They are case-sensitive (write elem.nodeType, not elem.NoDeTyPe).
+ **Attributes and prop**
+DOM props vs Attributes :-
+                    DOM nodes are regular js objects . We can add out own methods if not provided as stabdard `document.body.sayTagName()`
+                    We can modify all element objects using Elements.prototype and add new methods 
+                    DOM props behave like regular js :- can have any values and are case sensitive
+                    
+                    For standard HTML attributes , it gets parsed and DOM properties are created
+                    but does not happen for non standard attribute :- 
+                    so document.body.id works but not document.body.something , if we want to access non standard attributes we use :-
+                     All attributes are accessible by using the following methods:
+
+elem.hasAttribute(name) – checks for existence.
+elem.getAttribute(name) – gets the value.
+elem.setAttribute(name, value) – sets the value.
+elem.removeAttribute(name) – removes the attribute.
+These methods operate exactly with what’s written in HTML.
+                    
+                    we can also use elem.attributes: a collection of objects that belong to a built-in Attr class, with name and value properties. 
+                    HTML attributes have the following features:
+
+Their name is case-insensitive (id is same as ID).
+Their values are always strings.
+                    
+           **Property-attribute synchronization**
+                    
+                    When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vice versa.
+
+                    But there are exclusions, for instance input.value synchronizes only from attribute → to property, but not back:
+                    
+                    **DOM properties are typed**
+                    
+                    example :- input.checked 
+                    we can use non standard attribute for styling  .order[order-state="new"] {
+    color: green;
+  }
+can be prefferd than class as its easier than to addclass removeclass etc.  
+                    
+                    
+All attributes starting with “data-” are reserved for programmers’ use. They are available in the dataset property.
+                    
+
+For instance, if an elem has an attribute named "data-about", it’s available as elem.dataset.about.
+                    Multiword attributes like data-order-state become camel-cased: dataset.orderState.
+                    
+                    we can update as well order.dataset.orderState = "pending"
+                    
+                    <h2>Modifying the document</h2>
+                    
+                    Creating an element
+To create DOM nodes, there are two methods:
+
+                    <code>document.createElement(tag)</code> , create text node as <code>document.createTextNode(text)</code>
+                    
+                    <h2>Insertion methods</h2>
+                    
+                    we can use document.body.append(div).
+                    
+                    Here are more insertion methods, they specify different places where to insert:
+
+node.append(...nodes or strings) – append nodes or strings at the end of node,
+node.prepend(...nodes or strings) – insert nodes or strings at the beginning of node,
+node.before(...nodes or strings) –- insert nodes or strings before node,
+node.after(...nodes or strings) –- insert nodes or strings after node,
+node.replaceWith(...nodes or strings) –- replaces node with the given nodes or strings.
+                    
+                    <h2>insert html :-</h2>
+                    insertAdjacentHTML/Text/Element
+                    
+                    The first parameter is a code word, specifying where to insert relative to elem. Must be one of the following:
+
+"beforebegin" – insert html immediately before elem,
+"afterbegin" – insert html into elem, at the beginning,
+"beforeend" – insert html into elem, at the end,
+"afterend" – insert html immediately after elem.
+The second parameter is an HTML string, that is inserted “as HTML”.
+                    
+                    so syntax is this :- 
+                    The method has two brothers:
+
+elem.insertAdjacentText(where, text) – the same syntax, but a string of text is inserted “as text” instead of HTML,
+elem.insertAdjacentElement(where, elem) – the same syntax, but inserts an element.
+                    
+                    <h2>Node removal</h2>
+                    <p>node.remove().</p>
+                    Please note: if we want to move an element to another place – there’s no need to remove it from the old one.
+
+All insertion methods automatically remove the node from the old place.
+                    
+                    <h2> Cloning nodes: cloneNode</h2>
+                    The call elem.cloneNode(true) creates a “deep” clone of the element – with all attributes and subelements. If we call elem.cloneNode(false), then the clone is made without child elements.
+                    
+                    DocumentFragment
+DocumentFragment is a special DOM node that serves as a wrapper to pass around lists of nodes.
+                     let fragment = new DocumentFragment();
+                    <h2>old school ways to alter DOM</h2>
+                    parentElem.appendChild(node) , parentElem.insertBefore(node, nextSibling) , parentElem.replaceChild(node, oldChild) , parentElem.removeChild(node)
+                    
+                    today we can use 
+                    <ul>
+                        <li>append, prepend, before, after, remove, replaceWith</li>
+                    </ul>
+                    
+                    The call to document.write(html) writes the html into page “right here and now”. The call to document.write only works while the page is loading.
+                    If we call it afterwards, the existing document content is erased.
+                    
+                    
+                    <h2>className and classList</h2>
+                    we can use class attribute or className prop
+                    There’s another property for that: elem.classList.
+
+The elem.classList is a special object with methods to add/remove/toggle a single class.
+                    
+                    Methods of classList:
+
+elem.classList.add/remove("class") – adds/removes the class.
+elem.classList.toggle("class") – adds the class if it doesn’t exist, otherwise removes it.
+elem.classList.contains("class") – checks for the given class, returns true/false.
+                    element.style gets sets the valuw of style
+                    
+                    If we set style.display to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such style.display property at all.
+                    we cant set the full style 
+                    We can’t set the full style like div.style="color: red; width: 100px", because div.style is an object, and it’s read-only.
+                    
+                    Computed styles: getComputedStyle
+                    
+                    
+                    
+                    
+                    
 </body>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
