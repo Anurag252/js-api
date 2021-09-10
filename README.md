@@ -412,4 +412,313 @@ Methods elem.focus() and elem.blur() set/unset the focus on the element.
     
     
     
-  
+  Please note that we can’t “prevent losing focus” by calling event.preventDefault() in onblur, because onblur works after the element lost the focus.
+    
+    
+    
+    **Allow focusing on any element: tabindex**
+By default, many elements do not support focusing.
+
+The list varies a bit between browsers, but one thing is always correct: focus/blur support is guaranteed for elements that a visitor can interact with: <button>, <input>, <select>, <a> and so on.
+
+On the other hand, elements that exist to format something, such as <div>, <span>, <table> – are unfocusable by default. The method elem.focus() doesn’t work on them, and focus/blur events are never triggered.
+
+This can be changed using HTML-attribute tabindex.
+    
+    
+    There are two special values:
+
+tabindex="0" puts an element among those without tabindex. That is, when we switch elements, elements with tabindex=0 go after elements with tabindex ≥ 1.
+
+Usually it’s used to make an element focusable, but keep the default switching order. To make an element a part of the form on par with <input>.
+
+tabindex="-1" allows only programmatic focusing on an element. The Tab key ignores such elements, but method elem.focus() works.
+    
+    Events focus and blur do not bubble.but propagate down on the capturing phase.
+    
+    there are focusin and focusout events – exactly the same as focus/blur, but they bubble.
+
+Note that they must be assigned using elem.addEventListener, not on<event>.
+    
+    The current focused element is available as document.activeElement.
+    
+    ## Events: change, input, cut, copy, paste
+    
+    ## Event: change
+The change event triggers when the element has finished changing.
+
+For text inputs that means that the event occurs when it loses focus.
+
+For instance, while we are typing in the text field below – there’s no event. But when we move the focus somewhere else, for instance, click on a button – there will be a change event:
+    
+    Event: input
+The input event triggers every time after a value is modified by the user.
+
+Unlike keyboard events, it triggers on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
+    
+    Can’t prevent anything in oninput
+    
+    ## clipboard events:-
+    
+    We also can use event.preventDefault() to abort the action, then nothing gets copied/pasted.
+
+For instance, the code below prevents all such events and shows what we are trying to cut/copy/paste:
+
+
+    
+    ## Forms: event and method submit
+    The submit event triggers when the form is submitted, it is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
+
+The method form.submit() allows to initiate form sending from JavaScript. We can use it to dynamically create and send our own forms to server.
+    
+    There are two main ways to submit a form:
+
+The first – to click <input type="submit"> or <input type="image">.
+The second – press Enter on an input field.
+    
+    Relation between submit and click
+When a form is sent using Enter on an input field, a click event triggers on the <input type="submit">.
+
+That’s rather funny, because there was no click at all.
+    
+    
+    To submit a form to the server manually, we can call form.submit().
+
+Then the submit event is not generated. It is assumed that if the programmer calls form.submit(), then the script already did all related processing.
+    
+    ## Page: DOMContentLoaded, load, beforeunload, unload
+    
+    The lifecycle of an HTML page has three important events:
+
+DOMContentLoaded – the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures <img> and stylesheets may not yet have loaded.
+load – not only HTML is loaded, but also all the external resources: images, styles etc.
+beforeunload/unload – the user is leaving the page.
+    
+    Each event may be useful:
+
+DOMContentLoaded event – DOM is ready, so the handler can lookup DOM nodes, initialize the interface.
+load event – external resources are loaded, so styles are applied, image sizes are known etc.
+beforeunload event – the user is leaving: we can check if the user saved the changes and ask them whether they really want to leave.
+unload – the user almost left, but we still can initiate some operations, such as sending out statistics.
+    
+    The DOMContentLoaded event happens on the document object.
+
+We must use addEventListener to catch it:
+
+`document.addEventListener("DOMContentLoaded", ready);
+// not "document.onDOMContentLoaded = ..."`
+    
+    DOMContentLoaded and scripts
+When the browser processes an HTML-document and comes across a <script> tag, it needs to execute before continuing building the DOM. That’s a precaution, as scripts may want to modify DOM, and even document.write into it, so DOMContentLoaded has to wait.
+
+So DOMContentLoaded definitely happens after such scripts:
+    
+    DOMContentLoaded and styles
+External style sheets don’t affect DOM, so DOMContentLoaded does not wait for them.
+
+But there’s a pitfall. If we have a script after the style, then that script must wait until the stylesheet loads:
+    
+    ## window.onload
+    The load event on the window object triggers when the whole page is loaded including styles, images and other resources. This event is available via the onload property.
+
+The example below correctly shows image sizes, because window.onload waits for all images:
+    
+    ## window.onunload
+    
+    window.onunload
+When a visitor leaves the page, the unload event triggers on window. We can do something there that doesn’t involve a delay, like closing related popup windows.
+
+The notable exception is sending analytics.
+
+Let’s say we gather data about how the page is used: mouse clicks, scrolls, viewed page areas, and so on.
+
+Naturally, unload event is when the user leaves us, and we’d like to save the data on our server.
+
+There exists a special navigator.sendBeacon(url, data) method for such needs, described in the specification https://w3c.github.io/beacon/.
+
+It sends the data in background. The transition to another page is not delayed: the browser leaves the page, but still performs sendBeacon.
+    
+    The request is sent as POST.
+We can send not only a string, but also forms and other formats, as described in the chapter Fetch, but usually it’s a stringified object.
+The data is limited by 64kb.
+    
+    
+    ## window.onbeforeunload
+    If a visitor initiated navigation away from the page or tries to close the window, the beforeunload handler asks for additional confirmation.
+
+If we cancel the event, the browser may ask the visitor if they are sure.
+
+You can try it by running this code and then reloading the page:
+    
+    `window.onbeforeunload = function() {
+  return false;
+};`
+    For historical reasons, returning a non-empty string also counts as canceling the event. Some time ago browsers used to show it as a message, but as the modern specification says, they shouldn’t.
+    
+    Here’s an example:
+
+`window.onbeforeunload = function() {
+  return "There are unsaved changes. Leave now?";
+};`
+The behavior was changed, because some webmasters abused this event handler by showing misleading and annoying messages. So right now old browsers still may show it as a message, but aside of that – there’s no way to customize the message shown to the user.
+    
+    ## readyState
+    The document.readyState property tells us about the current loading state.
+
+There are 3 possible values:
+
+"loading" – the document is loading.
+"interactive" – the document was fully read.
+"complete" – the document was fully read and all resources (like images) are loaded too.
+    
+    There’s also the readystatechange event that triggers when the state changes, so we can print all these states like this:
+    
+    ## Defer and Async
+    
+    when script tag is placed ta top , it might miss the event listeners tag 
+    putting at the end , does not block html , but it starts downloading after all htmk
+    
+    defer :- will download in parallel
+    does not block page 
+    and fires DOMContentLoaded event
+    
+    Deferred scripts keep their relative order, just like regular scripts.
+    
+    The defer attribute is only for external scripts
+The defer attribute is ignored if the <script> tag has no src.
+    
+    async
+The async attribute is somewhat like defer. It also makes the script non-blocking. But it has important differences in the behavior.
+
+The async attribute means that a script is completely independent:
+
+The browser doesn’t block on async scripts (like defer).
+Other scripts don’t wait for async scripts, and async scripts don’t wait for them.
+DOMContentLoaded and async scripts don’t wait for each other:
+DOMContentLoaded may happen both before an async script (if an async script finishes loading after the page is complete)
+…or after an async script (if an async script is short or was in HTTP-cache)
+
+    
+    Dynamic scripts
+There’s one more important way of adding a script to the page.
+
+We can create a script and append it to the document dynamically using JavaScript:
+
+let script = document.createElement('script');
+script.src = "/article/script-async-defer/long.js";
+document.body.append(script); // (*)
+    
+    That is:
+
+They don’t wait for anything, nothing waits for them.
+The script that loads first – runs first (“load-first” order).
+This can be changed if we explicitly set script.async=false. Then scripts will be executed in the document order, just like defer.
+    
+    In practice, defer is used for scripts that need the whole DOM and/or their relative execution order is important.
+
+And async is used for independent scripts, like counters or ads. And their relative execution order does not matter.
+    
+    ## Resource loading: onload and onerror
+    
+    There are two events for it:
+
+onload – successful load,
+onerror – an error occurred.
+    
+    We can load it dynamically, like this:
+
+let script = document.createElement('script');
+script.src = "my.js";
+
+document.head.append(script);
+    
+    script.onload
+The main helper is the load event. It triggers after the script was loaded and executed.
+    
+    
+    script.onerror
+Errors that occur during the loading of the script can be tracked in an error event.
+
+For instance, let’s request a script that doesn’t exist:
+    
+    Crossorigin policy
+There’s a rule: scripts from one site can’t access contents of the other site. So, e.g. a script at https://facebook.com can’t read the user’s mailbox at https://gmail.com.
+
+Or, to be more precise, one origin (domain/port/protocol triplet) can’t access the content from another one. So even if we have a subdomain, or just another port, these are different origins with no access to each other.
+    
+    Similar cross-origin policy (CORS) is enforced for other types of resources as well.
+
+To allow cross-origin access, the <script> tag needs to have the crossorigin attribute, plus the remote server must provide special headers.
+
+There are three levels of cross-origin access:
+
+No crossorigin attribute – access prohibited.
+crossorigin="anonymous" – access allowed if the server responds with the header Access-Control-Allow-Origin with * or our origin. Browser does not send authorization information and cookies to remote server.
+crossorigin="use-credentials" – access allowed if the server sends back the header Access-Control-Allow-Origin with our origin and Access-Control-Allow-Credentials: true. Browser sends authorization information and cookies to remote server.
+    
+    
+    ## Mutation observer
+    MutationObserver is a built-in object that observes a DOM element and fires a callback when it detects a change.
+
+We’ll first take a look at the syntax, and then explore a real-world use case, to see where such thing may be useful.
+    
+    MutationObserver is easy to use.
+
+First, we create an observer with a callback-function:
+
+let observer = new MutationObserver(callback);
+And then attach it to a DOM node:
+
+observer.observe(node, config);
+config is an object with boolean options “what kind of changes to react on”:
+
+childList – changes in the direct children of node,
+subtree – in all descendants of node,
+attributes – attributes of node,
+attributeFilter – an array of attribute names, to observe only selected ones.
+characterData – whether to observe node.data (text content),
+    
+    There’s a method to stop observing the node:
+
+observer.disconnect() – stops the observation.
+When we stop the observing, it might be possible that some changes were not yet processed by the observer. In such cases, we use
+
+observer.takeRecords() – gets a list of unprocessed mutation records – those that happened, but the callback has not handled them.
+    
+    can be used to remove ads from page :- keep listening for ads on documen and remove them
+    
+    sample : -
+    `<div contentEditable id="elem">Click and <b>edit</b>, please</div>
+
+<script>
+let observer = new MutationObserver(mutationRecords => {
+  console.log(mutationRecords); // console.log(the changes)
+});
+
+// observe everything except attributes
+observer.observe(elem, {
+  childList: true, // observe direct children
+  subtree: true, // and lower descendants too
+  characterDataOldValue: true // pass old data to callback
+});
+</script>`
+    
+    ## Selection and Range
+    
+    Range
+The basic concept of selection is Range, that is essentially a pair of “boundary points”: range start and range end.
+
+A Range object is created without parameters:
+
+let range = new Range();
+    
+    ## selection and range 
+    selectin and range are apis to transform selected text 
+    
+    ## Event Loops and Microtask
+    
+    
+
+
+    
+    
