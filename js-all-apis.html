@@ -2438,7 +2438,7 @@ For instance, let’s compare tagName and nodeName for the document and a commen
 
 In the chatDiv example above the line chatDiv.innerHTML+="How goes?" re-creates the HTML content and reloads smile.gif (hope it’s cached). If chatDiv has a lot of other text and images, then the reload becomes clearly visible.
 
-There are other side-effects as well. For instance, if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting innerHTML. And if there was an <input> with a text entered by the visitor, then the text will be removed. And so on.</p>
+There are other side-effects as well. For instance, if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting innerHTML. And if there was an input with a text entered by the visitor, then the text will be removed. And so on.</p>
                 <h4>outerHTML: full HTML of the element</h4>                
                 <p>The outerHTML property contains the full HTML of the element. That’s like innerHTML plus the element itself.Beware: unlike innerHTML, writing to outerHTML does not change the element. Instead, it replaces it in the DOM.</p>
                 <code> let div = document.querySelector('div');
