@@ -714,8 +714,84 @@ let range = new Range();
     
     ## selection and range 
     selectin and range are apis to transform selected text 
-    
+ `   
     ## Event Loops and Microtask
+    
+    image :- /article/event-loop/eventLoop-full.svg
+    
+    so all tasks are queued on event loop . all browser events are called macrotask and settimeout is also called macrotask . Microtask is promise calls (any await call) .
+    
+    order is after ecery macrotask , all microtasks are executed . Rendering is also macrotask
+    
+    we can queue anything to microtask :- 
+    To schedule a new microtask
+
+Use queueMicrotask(f).
+Also promise handlers go through the microtask queue.
+    
+    to schedule a macrotask use 👎
+    To schedule a new macrotask:
+
+Use zero delayed setTimeout(f).
+That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react to user events and show progress between them.
+    
+    
+    
+    webworkers is used as parallel threaded program
+    
+    ## popups
+    Popup blocking
+In the past, evil sites abused popups a lot. A bad page could open tons of popup windows with ads. So now most browsers try to block popups and protect the user.
+
+Most browsers block popups if they are called outside of user-triggered event handlers like onclick.
+    
+    window.open
+The syntax to open a popup is: window.open(url, name, params):
+    
+    url
+An URL to load into the new window.
+name
+A name of the new window. Each window has a window.name, and here we can specify which window to use for the popup. If there’s already a window with such name – the given URL opens in it, otherwise a new window is opened.
+params
+The configuration string for the new window. It contains settings, delimited by a comma. There must be no spaces in params, for instance: width=200,height=100.
+Settings for params:
+
+Position:
+left/top (numeric) – coordinates of the window top-left corner on the screen. There is a limitation: a new window cannot be positioned offscreen.
+width/height (numeric) – width and height of a new window. There is a limit on minimal width/height, so it’s impossible to create an invisible window.
+Window features:
+menubar (yes/no) – shows or hides the browser menu on the new window.
+toolbar (yes/no) – shows or hides the browser navigation bar (back, forward, reload etc) on the new window.
+location (yes/no) – shows or hides the URL field in the new window. FF and IE don’t allow to hide it by default.
+status (yes/no) – shows or hides the status bar. Again, most browsers force it to show.
+resizable (yes/no) – allows to disable the resize for the new window. Not recommended.
+scrollbars (yes/no) – allows to disable the scrollbars for the new window. Not recommended.
+There is also a number of less supported browser-specific features, which are usually not used. Check window.open in MDN for examples.
+    
+  ###  Accessing popup from window
+The open call returns a reference to the new window. It can be used to manipulate it’s properties, change location and even more.
+
+In this example, we generate popup content from JavaScript:
+
+let newWin = window.open("about:blank", "hello", "width=200,height=200");
+
+newWin.document.write("Hello, world!");
+    
+    `let newWindow = open('/', 'example', 'width=300,height=300')
+newWindow.focus();
+
+alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+
+newWindow.onload = function() {
+  let html = `<div style="font-size:30px">Welcome!</div>`;
+  newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+};`
+    
+    same-origin
+    Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
+
+Otherwise, e.g. if the main window is from site.com, and the popup from gmail.com, that’s impossible for user safety reasons. For the details, see chapter Cross-window communication.
+    
     
     
 
