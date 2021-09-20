@@ -75,7 +75,7 @@
         <input id="1b" class="btn btn-primary" onclick="calc(event)" type="button" value="evaluate" />
     </div>
     
-    <p>Anonymous function <code>var foo = function(){
+    <p>Anonymous function <code>var foo = function(){e
 
     }
     </code></p>
@@ -2191,7 +2191,22 @@ set (for writing to prop)
        // since no handler traps all operation are forwarded to target
     proxy.test = 5;
     proxy.test
+        const target = {
+  message1: "hello",
+  message2: "everyone"
+};
+
+const handler2 = {
+  get: function(target, prop, receiver) {
+    return "world";
+  }
+};
+
+const proxy2 = new Proxy(target, handler2);
+
+proxy2.message1
     </code>
+    
     <br/>
     <code class="1a"></code>
     <br/>
